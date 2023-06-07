@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 def index(request):
-    return HttpResponse("HELLLLLO")
+    return HttpResponse("<h1>Welcome to shurl3.xyz! (URL shortner API)</h1>")
 
 @csrf_exempt
 def createShortURL(request, link):
