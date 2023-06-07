@@ -16,7 +16,7 @@ def createShortURL(request, link):
         uid = str(uuid.uuid4())[:5]
         new_url = URL(url=url, slug=uid)
         new_url.save()
-        rep = "shurl3.xyz/" + str(new_url.slug)
+        rep = "www.shurl3.xyz/" + str(new_url.slug)
         return HttpResponse(rep)
 
 @csrf_exempt
