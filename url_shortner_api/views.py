@@ -16,12 +16,10 @@ def createShortURL(request, link):
         uid = str(uuid.uuid4())[:5]
         new_url = URL(url=url, slug=uid)
         new_url.save()
-        print(new_url)
-    return HttpResponse(str(new_url.slug))
+    rep = "shurl3.xyz/" + str(new_url.slug)
+    return HttpResponse(rep)
 
 @csrf_exempt
 def go(request, pk):
-    print(pk)
     url_details = URL.objects.get(slug=pk)
-    print(url_details)
     return redirect("https://" + url_details.url)
