@@ -18,9 +18,18 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 
+from django.contrib import admin
+from django.urls import path, re_path, register_converter
+from . import views
+
+class SlugConverter:
+    regex = '[^/]+'
+
+register_converter(SlugConverter, 'link')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name="home"),
-    path('createshorturl/<str:link>', views.createShortURL, name="shorturl"),
+    path('createshorturl/<path:link>', views.createShortURL, name="shorturl"),
     path('<str:pk>', views.go, name="redirect")
 ]
