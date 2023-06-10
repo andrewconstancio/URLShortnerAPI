@@ -1,3 +1,4 @@
+import re
 import uuid
 from django.http import HttpResponse, JsonResponse
 
@@ -12,11 +13,12 @@ def index(request):
 @csrf_exempt
 def createShortURL(request, link):
     if request.method == "POST":
-        url = link
         uid = str(uuid.uuid4())[:5]
+        url = re.sub(r"https://", "", link)
+        url = re.sub(r"http://", "", url)
         new_url = URL(url=url, slug=uid)
         new_url.save()
-        rep = "www.shurl3.xyz/" + str(new_url.slug)
+        rep = "shurl3.xyz/" + str(new_url.slug)
         return JsonResponse({"short_url" : rep})
     else:
         return JsonResponse({"error" : "Invalid Request"})
