@@ -18,7 +18,7 @@ def createShortURL(request, link):
         url = re.sub(r"http://", "", url)
         new_url = URL(url=url, slug=uid)
         new_url.save()
-        rep = "shurl3.xyz/" + str(new_url.slug)
+        rep = "https://shurl3.xyz/" + str(new_url.slug)
         return JsonResponse({"short_url" : rep})
     else:
         return JsonResponse({"error" : "Invalid Request"})
@@ -27,6 +27,6 @@ def createShortURL(request, link):
 def go(request, pk):
     try:
         url_details = URL.objects.get(slug=pk)
-        return redirect("https://" + url_details.url)
+        return redirect(url_details.url)
     except:
         return JsonResponse({"error" : "Invalid Request"})
