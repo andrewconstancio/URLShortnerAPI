@@ -19,9 +19,9 @@ def createShortURL(request, link):
         new_url = URL(url=url, slug=uid)
         new_url.save()
         rep = "www.shurl3.xyz/" + str(new_url.slug)
-        return JsonResponse({"short_url" : rep}, 200)
+        return JsonResponse({"short_url" : rep})
     else:
-        return JsonResponse({"error" : "Invalid Request"}, 400)
+        return JsonResponse({"error" : "Invalid Request"})
 
 @csrf_exempt
 def go(request, pk):
@@ -29,4 +29,4 @@ def go(request, pk):
         url_details = URL.objects.get(slug=pk)
         return redirect("https://" + url_details.url)
     except:
-        return JsonResponse({"error" : "Invalid Request"}, 400)
+        return JsonResponse({"error" : "Invalid Request"})
