@@ -8,4 +8,4 @@ sqlparse==0.4.4
 typing-extensions==4.6.3
 tzdata==2023.3
 whitenoise==6.4.0
-django-cors-headers==4.6.3
+django-cors-headers==4.0.0
