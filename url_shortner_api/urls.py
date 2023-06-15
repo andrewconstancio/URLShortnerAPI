@@ -26,6 +26,6 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name="home"),
-    path('createshorturl/<path:link>', views.createShortURL, name="shorturl"),
+    path('createshorturl/', views.createShortURL, name="shorturl"),
     path('<str:pk>', views.go, name="redirect")
 ]
