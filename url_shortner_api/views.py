@@ -18,7 +18,7 @@ def createShortURL(request):
         uid = str(uuid.uuid4())[:5]
         url = re.sub(r"https://", "", link)
         url = re.sub(r"http://", "", url)
-        new_url = URL(url=url, slug=uid, date_created=datetime.datetime.now())
+        new_url = URL(url=url, slug=uid)
         new_url.save()
         rep = "www.shurl3.xyz/" + str(new_url.slug)
         return JsonResponse({"short_url" : rep}, status=200)
