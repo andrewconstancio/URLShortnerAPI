@@ -25,7 +25,7 @@ def createShortURL(request):
         rep = "www.shurl3.xyz/" + str(new_url.slug)
         return JsonResponse({"short_url" : rep}, status=200)
     else:
-        return JsonResponse({"error" : "Invalid Request"}, status=400)
+        return JsonResponse({"error" : "Invalid Request, this is not a post request."}, status=400)
 
 @csrf_exempt
 def go(request, pk):
