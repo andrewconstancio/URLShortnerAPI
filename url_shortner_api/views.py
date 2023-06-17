@@ -12,7 +12,10 @@ def index(request):
 
 @csrf_exempt
 def createShortURL(request):
-    if request.method == "POST" and "long_url" in request.GET:
+    if "long_url" not in request.GET:
+        return JsonResponse({"error" : "long_url url paramenter is not found the request."}, status=400)
+
+    if request.method == "POST":
         link = request.GET.get("long_url")
         uid = str(uuid.uuid4())[:5]
         url = re.sub(r"https://", "", link)
