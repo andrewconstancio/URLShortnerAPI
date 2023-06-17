@@ -8,13 +8,12 @@ from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 def index(request):
-    print(request.GET.get("test"))
     return HttpResponse("<h1>Welcome to shurl3.xyz! (URL shortner API)</h1>")
 
 @csrf_exempt
 def createShortURL(request):
     if request.method == "POST" and "long_url" in request.GET:
-        link = request.GET["long_url"]
+        link = request.GET.get("long_url")
         uid = str(uuid.uuid4())[:5]
         url = re.sub(r"https://", "", link)
         url = re.sub(r"http://", "", url)
